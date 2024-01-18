@@ -1,17 +1,18 @@
-#Loading Packages
+# Loading Packages
 import requests
 import pandas as pd
 import yaml
+
 
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
         config = yaml.safe_load(file)
     return config
 
+
 def get_data(country="djibouti", mode=0, region=[70],
              season="season1", predictor="pnep", predictand="bad-years", year=2023,
              issue_month0=5, freq=15, include_upcoming="false"):
-
     region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
     api_url = (f"http://iridl.ldeo.columbia.edu/fbfmaproom2/{country}/"
                f"export?&mode={mode}&region={region_str}&season={season}&"
@@ -54,21 +55,28 @@ def get_data(country="djibouti", mode=0, region=[70],
 
         # Create a new DataFrame using the data from the first row of non-nested DataFrame
         melted_non_nested_df = pd.DataFrame({
-            'Skill Name': non_nested_df.columns,
-            'Skill Value': non_nested_df.iloc[0].values
+            'Metric': non_nested_df.columns,
+            'Value': non_nested_df.iloc[0].values
         })
+
+        melted_non_nested_df['Value'] = melted_non_nested_df['Value'].round(2)
 
         melted_non_nested_df = melted_non_nested_df.iloc[:2, :]
 
+        replace_values = {'threshold': 'Forecast Threshold', 'skill.accuracy': 'Forecast Accuracy'}
+        melted_non_nested_df['Metric'].replace(replace_values, inplace=True)
+
         # Convert melted_non_nested_df to a dictionary
-        melted_non_nested_dict = melted_non_nested_df.set_index('Skill Name')['Skill Value'].to_dict()
+        melted_non_nested_dict = melted_non_nested_df.set_index('Metric')['Value'].to_dict()
 
         # Convert flattened data to Pandas DataFrame
         df = pd.DataFrame(flattened_data).drop(non_nested_df.columns, axis=1, errors='ignore')
-        df['triggered'] = df['pnep'] > melted_non_nested_dict['threshold']
-        df['trigger difference'] = df['pnep'] - melted_non_nested_dict['threshold']
-        df = df.loc[:, ['triggered','pnep', 'trigger difference']].iloc[1, :].to_frame().T
-
+        df['triggered'] = df['pnep'] > melted_non_nested_dict['Forecast Threshold']
+        df['trigger difference'] = df['pnep'] - melted_non_nested_dict['Forecast Threshold']
+        df.rename(columns={'pnep': 'forecast'}, inplace=True)
+        df['forecast'] = df['forecast'].round(2)
+        df['trigger difference'] = df['trigger difference'].round(2)
+        df = df.loc[:, ['forecast', 'trigger difference', 'triggered']].iloc[1, :].to_frame().T
 
         # Return the relevant dataframes or results
         return df, melted_non_nested_df
@@ -78,3 +86,7 @@ def get_data(country="djibouti", mode=0, region=[70],
         print(f"Error: {response.status_code}")
         return None, None  # You might want to handle errors more gracefully
 
+
+# Function to apply conditional formatting to tables
+def style_trigger(v, props=''):
+    return props if v == True else None

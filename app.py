@@ -1,7 +1,7 @@
 #Loading Packages
 import shinyswatch
 from shiny import App, ui, render
-from utils import get_data, load_config
+from utils import get_data, load_config, style_trigger
 
 # Loading Country Variables
 country = "djibouti"
@@ -47,7 +47,7 @@ app_ui = ui.page_navbar(
                         ui.tags.h2("  "),
                         ui.tags.h3("Skill Analysis"),
                         ui.output_table("table_key0_skill"),
-                        ui.tags.h3("Trigger Table"),
+                        ui.tags.h3("Trigger Analysis"),
                         ui.output_table("table_key0_trigger"),
                     ),
 #                    ui.nav(f"{next((mode for mode in modes if mode['key'] == 1), None).get('name')}"),
@@ -65,7 +65,10 @@ def server(input, output, session):
     @output
     @render.table
     def table_key0_trigger():
-        return output_freq_15_mode_0_month_3_table
+        return (output_freq_15_mode_0_month_3_table.style.set_table_attributes(
+                    'class="dataframe shiny-table table w-auto"'
+                )
+                .map(style_trigger, props='color:white;background-color:red'))
 
     @output
     @render.table
