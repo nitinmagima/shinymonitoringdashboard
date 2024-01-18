@@ -1,0 +1,18 @@
+countries:
+    djibouti:
+      country: "djibouti"
+      target_season: "JAS" #this is different from season which is used for the API
+      mode:
+        - name: National
+          key: 0
+        #- name: Regional
+        #  key: 1
+        #- name: District
+        #  key: 2
+      season: "season1"
+      predictor: "pnep"
+      predictand: "bad-years"
+      year: 2023
+      issue_month: [3,4,5]
+      freq: [15,30]
+      include_upcoming: false
