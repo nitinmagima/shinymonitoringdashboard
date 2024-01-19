@@ -5,10 +5,10 @@ countries:
       mode:
         - name: National
           key: 0
-        #- name: Regional
-        #  key: 1
-        #- name: District
-        #  key: 2
+        - name: Regional
+          key: 1
+        - name: District
+          key: 2
       season: "season1"
       predictor: "pnep"
       predictand: "bad-years"

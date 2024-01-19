@@ -3,14 +3,27 @@ import requests
 import pandas as pd
 import yaml
 
+country = "djibouti"
 
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
         config = yaml.safe_load(file)
     return config
 
+# Loading Country Variables
+config = load_config()
 
-def get_data(country="djibouti", mode=0, region=[70],
+# Accessing values for the specified country
+country_config = config.get("countries", {}).get(country, {})
+
+# Access individual values using the 'country' variable
+modes = country_config.get("mode", [])
+year = country_config.get("year")
+target_season = country_config.get("target_season")
+frequencies = country_config['freq']
+issue_month = country_config['issue_month']
+
+def get_admin0data(country=country, mode=0, region=[70],
              season="season1", predictor="pnep", predictand="bad-years", year=2023,
              issue_month0=5, freq=15, include_upcoming="false"):
     region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
@@ -59,8 +72,6 @@ def get_data(country="djibouti", mode=0, region=[70],
             'Value': non_nested_df.iloc[0].values
         })
 
-        melted_non_nested_df['Value'] = melted_non_nested_df['Value'].round(2)
-
         melted_non_nested_df = melted_non_nested_df.iloc[:2, :]
 
         replace_values = {'threshold': 'Forecast Threshold', 'skill.accuracy': 'Forecast Accuracy'}
@@ -74,19 +85,78 @@ def get_data(country="djibouti", mode=0, region=[70],
         df['triggered'] = df['pnep'] > melted_non_nested_dict['Forecast Threshold']
         df['trigger difference'] = df['pnep'] - melted_non_nested_dict['Forecast Threshold']
         df.rename(columns={'pnep': 'forecast'}, inplace=True)
-        df['forecast'] = df['forecast'].round(2)
-        df['trigger difference'] = df['trigger difference'].round(2)
+        df['forecast'] = df['forecast']
+        df['trigger difference'] = df['trigger difference']
         df = df.loc[:, ['forecast', 'trigger difference', 'triggered']].iloc[1, :].to_frame().T
 
-        # Return the relevant dataframes or results
-        return df, melted_non_nested_df
+        melted_non_nested_df['Value'] = melted_non_nested_df['Value']
 
+        # Combine df and melted_non_nested_df
+        melted_non_nested_df = melted_non_nested_df.T  # Transpose the DataFrame
+        melted_non_nested_df.columns = melted_non_nested_df.iloc[0]  # Set the first row as column names
+        melted_non_nested_df = melted_non_nested_df.iloc[1:, :].reset_index(drop=True).rename_axis(None,
+                                                                                                   axis=1)  # Reset index
+        combined_df = pd.concat([df.reset_index(drop=True), melted_non_nested_df], axis=1).reset_index(drop=True)
+        combined_df['Frequency'] = f"{freq}%"
+        combined_df['Forecast Accuracy'] = (combined_df['Forecast Accuracy'] * 100).astype(str) + '%'
+
+        month_mapping = {
+            0: 'Jan',
+            1: 'Feb',
+            2: 'Mar',
+            3: 'Apr',
+            4: 'May',
+            5: 'Jun',
+            6: 'Jul',
+            7: 'Aug',
+            8: 'Sep',
+            9: 'Oct',
+            10: 'Nov',
+            11: 'Dec'
+        }
+
+        combined_df['Issue Month'] = issue_month0
+        combined_df['Issue Month'] = combined_df['Issue Month'].map(month_mapping)
+
+        # Rearrange the columns in a specific sequence
+        desired_columns = ['Frequency', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference', 'Forecast Accuracy', 'triggered']
+        combined_df = combined_df[desired_columns]
+
+        # Return the combined DataFrame
+        return combined_df
     else:
-        # Print an error message if the request was not successful
+        # Return an empty DataFrame or handle the error as needed
         print(f"Error: {response.status_code}")
-        return None, None  # You might want to handle errors more gracefully
+        return pd.DataFrame()
 
 
 # Function to apply conditional formatting to tables
 def style_trigger(v, props=''):
     return props if v == True else None
+
+def get_admin_data(country, level):
+    # Construct the API URL with the provided parameters
+    api_url = f"https://iridl.ldeo.columbia.edu/fbfmaproom2/regions?country={country}&level={level}"
+
+    # Make a GET request to the API
+    response = requests.get(api_url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the JSON data
+        json_data = response.json()
+
+        # Create a DataFrame from the JSON data
+        df = pd.DataFrame(json_data)
+
+        # Extract "key" and "label" from the "regions" column
+        df[['key', 'label']] = df['regions'].apply(pd.Series)
+
+        # Drop the original "regions" column if needed
+        df = df.drop('regions', axis=1)
+
+        return df
+    else:
+        # Print an error message if the request was not successful
+        print(f"Error: {response.status_code}")
+        return None
