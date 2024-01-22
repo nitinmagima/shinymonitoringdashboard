@@ -166,6 +166,7 @@ def get_admin_data(country, level):
         print(f"Error: {response.status_code}")
         return None
 
+
 def get_trigger_tables():
     # Initialize a dictionary to store admin tables
     admin_tables = {}

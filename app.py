@@ -1,6 +1,6 @@
 # Loading Packages
 import shinyswatch
-from shiny import App, ui, render
+from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from utils import load_config, style_trigger, get_trigger_tables
 import pandas as pd
 
@@ -33,10 +33,10 @@ app_ui = ui.page_navbar(
     ui.nav("Trigger Monitor",
            ui.navset_card_pill(
                ui.nav(f"{next((mode for mode in modes if mode['key'] == 0), None).get('name')}",
-                      ui.output_table("table_key0_trigger"),
+                      ui.output_data_frame("table_key0_trigger"),
                       ),
                ui.nav(f"{next((mode for mode in modes if mode['key'] == 1), None).get('name')}",
-                      ui.output_table("table_key1_trigger")
+                      ui.output_data_frame("table_key1_trigger")
                       ),
            ),
            ),
@@ -48,21 +48,23 @@ app_ui = ui.page_navbar(
 
 
 def server(input, output, session):
-    @output
-    @render.table
+    @render.data_frame
     def table_key0_trigger():
-        return (combined_admin0.style.set_table_attributes(
-            'class="dataframe shiny-table table w-auto"'
-        )
-                .map(style_trigger, props='color:white;background-color:red'))
+        with ui.Progress(min=1, max=15) as p:
+            p.set(message="Calculation in progress", detail="This may take a few secs...")
 
-    @output
-    @render.table
+            data = combined_admin0
+
+        return render.DataTable(data, filters = True)
+
+    @render.data_frame
     def table_key1_trigger():
-        return (combined_admin1.style.set_table_attributes(
-            'class="dataframe shiny-table table w-auto"'
-        )
-                .map(style_trigger, props='color:white;background-color:red'))
+        with ui.Progress(min=1, max=15) as p:
+            p.set(message="Calculation in progress", detail="This may take a few secs...")
+
+            data = combined_admin1
+
+        return render.DataTable(data, filters = True)
 
 
 app = App(app_ui, server)

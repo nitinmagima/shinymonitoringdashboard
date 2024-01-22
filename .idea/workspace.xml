@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/PyShinyDashboard.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="created a get_trigger_tables to populate the tables">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +39,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -100,8 +95,43 @@
       <workItem from="1703583566374" duration="600000" />
       <workItem from="1705078814567" duration="1667000" />
       <workItem from="1705510099673" duration="13165000" />
-      <workItem from="1705585151865" duration="314000" />
+      <workItem from="1705585151865" duration="32348000" />
+      <workItem from="1705929225397" duration="7095000" />
+      <workItem from="1705954021129" duration="720000" />
     </task>
+    <task id="LOCAL-00001" summary="created admin0 tables. commented out admin1 and admin2 in yaml file.">
+      <option name="closed" value="true" />
+      <created>1705585554351</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705585554351</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added conditional formatting to table.">
+      <option name="closed" value="true" />
+      <created>1705593811045</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705593811045</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added a function to dynamically use regions in the getting tables.">
+      <option name="closed" value="true" />
+      <created>1705702671867</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705702671867</updated>
+    </task>
+    <task id="LOCAL-00004" summary="created a get_trigger_tables to populate the tables">
+      <option name="closed" value="true" />
+      <created>1705936990570</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705936990570</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,7 +148,15 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="created admin0 tables. commented out admin1 and admin2 in yaml file." />
+    <MESSAGE value="added conditional formatting to table." />
+    <MESSAGE value="added a function to dynamically use regions in the getting tables." />
+    <MESSAGE value="created a get_trigger_tables to populate the tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="created a get_trigger_tables to populate the tables" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PyShinyDashboard$main.coverage" NAME="main Coverage Results" MODIFIED="1702541152295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyShinyDashboard$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1705702401339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyShinyDashboard$main.coverage" NAME="main Coverage Results" MODIFIED="1705702193929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
