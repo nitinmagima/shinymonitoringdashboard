@@ -5,10 +5,12 @@ import yaml
 
 country = "djibouti"
 
+
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
         config = yaml.safe_load(file)
     return config
+
 
 # Loading Country Variables
 config = load_config()
@@ -23,7 +25,8 @@ target_season = country_config.get("target_season")
 frequencies = country_config['freq']
 issue_month = country_config['issue_month']
 
-def get_admin0data(country=country, mode=0, region=[70],
+
+def get_data(country=country, mode=0, region=[70],
              season="season1", predictor="pnep", predictand="bad-years", year=2023,
              issue_month0=5, freq=15, include_upcoming="false"):
     region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
@@ -119,7 +122,8 @@ def get_admin0data(country=country, mode=0, region=[70],
         combined_df['Issue Month'] = combined_df['Issue Month'].map(month_mapping)
 
         # Rearrange the columns in a specific sequence
-        desired_columns = ['Frequency', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference', 'Forecast Accuracy', 'triggered']
+        desired_columns = ['Frequency', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference',
+                           'Forecast Accuracy', 'triggered']
         combined_df = combined_df[desired_columns]
 
         # Return the combined DataFrame
@@ -133,6 +137,7 @@ def get_admin0data(country=country, mode=0, region=[70],
 # Function to apply conditional formatting to tables
 def style_trigger(v, props=''):
     return props if v == True else None
+
 
 def get_admin_data(country, level):
     # Construct the API URL with the provided parameters
@@ -160,3 +165,49 @@ def get_admin_data(country, level):
         # Print an error message if the request was not successful
         print(f"Error: {response.status_code}")
         return None
+
+def get_trigger_tables():
+    # Initialize a dictionary to store admin tables
+    admin_tables = {}
+
+    # Creating trigger tables
+
+    for mode in modes:
+        admin_name = f"admin{mode['key']}_tables"
+        admin_tables[admin_name] = {}
+        for freq in frequencies:
+            for month in issue_month:
+                admin_data = get_admin_data(country, mode['key'])
+                # Iterate over each key value
+                if isinstance(admin_data, pd.Series):
+                    for region_key, label in admin_data.items():
+                        print(region_key, label)
+                        table_name = f"output_freq_{freq}_mode_{mode['key']}_month_{month}_region_{region_key}_table"
+
+                        df = get_data(country=country, mode=mode['key'], region=[region_key],
+                                      season="season1", predictor="pnep", predictand="bad-years",
+                                      year=2023,
+                                      issue_month0=month, freq=freq, include_upcoming="false")
+
+                        df.insert(0, 'Admin Name', label)
+                        admin_tables[admin_name][table_name] = df
+
+                elif isinstance(admin_data, pd.DataFrame):
+                    for index, row in admin_data.iterrows():
+                        region_key, label = row['key'], row['label']
+
+                        table_name = f"output_freq_{freq}_mode_{mode['key']}_month_{month}_region_{region_key}_table"
+
+                        df = get_data(country=country, mode=mode['key'], region=[region_key],
+                                      season="season1", predictor="pnep", predictand="bad-years",
+                                      year=2023,
+                                      issue_month0=month, freq=freq, include_upcoming="false")
+
+                        df.insert(0, 'Admin Name', label)
+                        admin_tables[admin_name][table_name] = df
+
+                else:
+                    # Handle other cases or raise an error
+                    raise ValueError("Unexpected output type from get_admin_data.")
+
+    return admin_tables
