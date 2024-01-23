@@ -5,7 +5,7 @@ from utils import load_config, style_trigger, get_trigger_tables
 import pandas as pd
 
 # Loading Country Variables
-country = "djibouti"
+country = "madagascar"
 config = load_config()
 
 # Accessing values for the specified country
@@ -25,7 +25,6 @@ admin_tables = get_trigger_tables()
 combined_admin0 = pd.concat(admin_tables["admin0_tables"].values(), ignore_index=True)
 combined_admin1 = pd.concat(admin_tables["admin1_tables"].values(), ignore_index=True)
 
-
 # App Layout
 
 app_ui = ui.page_navbar(
@@ -40,7 +39,7 @@ app_ui = ui.page_navbar(
                       ),
            ),
            ),
-    ui.nav("FEWSNET", "Page B content"),
+    ui.nav("Design Tool", "Page B content"),
     ui.nav("Resources", "Page C content"),
     title=f"{country.capitalize()} Trigger Monitoring -  {target_season} {year}",
     id="navbar"
@@ -55,7 +54,7 @@ def server(input, output, session):
 
             data = combined_admin0
 
-        return render.DataTable(data, filters = True)
+        return render.DataTable(data, filters=True)
 
     @render.data_frame
     def table_key1_trigger():
@@ -64,7 +63,7 @@ def server(input, output, session):
 
             data = combined_admin1
 
-        return render.DataTable(data, filters = True)
+        return render.DataTable(data, filters=True)
 
 
 app = App(app_ui, server)

@@ -3,9 +3,7 @@ import requests
 import pandas as pd
 import yaml
 
-country = "djibouti"
-
-
+country = "madagascar"
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
         config = yaml.safe_load(file)
@@ -24,6 +22,8 @@ year = country_config.get("year")
 target_season = country_config.get("target_season")
 frequencies = country_config['freq']
 issue_month = country_config['issue_month']
+predictor = country_config['predictor']
+predictand = country_config['predictand']
 
 
 def get_data(country=country, mode=0, region=[70],
@@ -85,9 +85,9 @@ def get_data(country=country, mode=0, region=[70],
 
         # Convert flattened data to Pandas DataFrame
         df = pd.DataFrame(flattened_data).drop(non_nested_df.columns, axis=1, errors='ignore')
-        df['triggered'] = df['pnep'] > melted_non_nested_dict['Forecast Threshold']
-        df['trigger difference'] = df['pnep'] - melted_non_nested_dict['Forecast Threshold']
-        df.rename(columns={'pnep': 'forecast'}, inplace=True)
+        df['triggered'] = df[predictor] > melted_non_nested_dict['Forecast Threshold']
+        df['trigger difference'] = df[predictor] - melted_non_nested_dict['Forecast Threshold']
+        df.rename(columns={predictor: 'forecast'}, inplace=True)
         df['forecast'] = df['forecast']
         df['trigger difference'] = df['trigger difference']
         df = df.loc[:, ['forecast', 'trigger difference', 'triggered']].iloc[1, :].to_frame().T
@@ -186,8 +186,8 @@ def get_trigger_tables():
                         table_name = f"output_freq_{freq}_mode_{mode['key']}_month_{month}_region_{region_key}_table"
 
                         df = get_data(country=country, mode=mode['key'], region=[region_key],
-                                      season="season1", predictor="pnep", predictand="bad-years",
-                                      year=2023,
+                                      season="season1", predictor=predictor, predictand=predictand,
+                                      year=year,
                                       issue_month0=month, freq=freq, include_upcoming="false")
 
                         df.insert(0, 'Admin Name', label)
@@ -200,8 +200,8 @@ def get_trigger_tables():
                         table_name = f"output_freq_{freq}_mode_{mode['key']}_month_{month}_region_{region_key}_table"
 
                         df = get_data(country=country, mode=mode['key'], region=[region_key],
-                                      season="season1", predictor="pnep", predictand="bad-years",
-                                      year=2023,
+                                      season="season1", predictor=predictor, predictand=predictand,
+                                      year=year,
                                       issue_month0=month, freq=freq, include_upcoming="false")
 
                         df.insert(0, 'Admin Name', label)
