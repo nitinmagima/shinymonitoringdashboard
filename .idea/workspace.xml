@@ -48,7 +48,7 @@
     "Python.scratch.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "madagascarond",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -160,7 +160,8 @@
     <MESSAGE value="added conditional formatting to table." />
     <MESSAGE value="added a function to dynamically use regions in the getting tables." />
     <MESSAGE value="created a get_trigger_tables to populate the tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="created a get_trigger_tables to populate the tables" />
+    <MESSAGE value="updated the utils file such that it takes predictor and predictand from yaml file. yaml includes madagascar." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the utils file such that it takes predictor and predictand from yaml file. yaml includes madagascar." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PyShinyDashboard$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1705702401339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

@@ -4,6 +4,7 @@ from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from utils import load_config, style_trigger, get_trigger_tables
 import pandas as pd
 
+
 # Loading Country Variables
 country = "madagascar"
 config = load_config()
@@ -17,6 +18,8 @@ year = country_config.get("year")
 target_season = country_config.get("target_season")
 frequencies = country_config['freq']
 issue_month = country_config['issue_month']
+design_tool = country_config['design_tool']
+report = country_config['report']
 
 # Combine admin tables for a specific mode
 
@@ -39,9 +42,29 @@ app_ui = ui.page_navbar(
                       ),
            ),
            ),
-    ui.nav("Design Tool", "Page B content"),
-    ui.nav("Resources", "Page C content"),
+    ui.nav_spacer(),
+    ui.nav_menu(
+        "Additional Resources",
+        ui.nav_control(
+            ui.a(
+                "Design Tool",
+                href=design_tool,
+                target="_blank",
+            )
+        ),
+        ui.nav_control(
+            ui.a(
+                "R Markdown Reports",
+                href=report,
+                target="_blank",
+            )
+        ),
+        align="right",
+    ),
     title=f"{country.capitalize()} Trigger Monitoring -  {target_season} {year}",
+    window_title=f"{country.capitalize()} Trigger Monitoring -  {target_season} {year}",
+    collapsible=True,
+    fluid=True,
     id="navbar"
 )
 

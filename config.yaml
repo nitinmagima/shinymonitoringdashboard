@@ -1,6 +1,6 @@
 countries:
     djibouti:
-      country: "djibouti"
+      country: "djibouti" #this is different from country as sometimes the season is included in this variable
       target_season: "JAS" #this is different from season which is used for the API
       mode:
         - name: National
@@ -16,6 +16,8 @@ countries:
       issue_month: [3,4,5]
       freq: [15,30]
       include_upcoming: false
+      design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/djibouti"
+      report: "https://google.com"
 
     madagascar:
       country: "madagascar"
@@ -34,3 +36,5 @@ countries:
       issue_month: [ 8,9,10 ]
       freq: [ 15, 25, 30 ]
       include_upcoming: false
+      design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/madagascar"
+      report: "https://google.com"

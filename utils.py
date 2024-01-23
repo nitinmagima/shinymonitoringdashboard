@@ -100,8 +100,8 @@ def get_data(country=country, mode=0, region=[70],
         melted_non_nested_df = melted_non_nested_df.iloc[1:, :].reset_index(drop=True).rename_axis(None,
                                                                                                    axis=1)  # Reset index
         combined_df = pd.concat([df.reset_index(drop=True), melted_non_nested_df], axis=1).reset_index(drop=True)
-        combined_df['Frequency'] = f"{freq}%"
-        combined_df['Forecast Accuracy'] = (combined_df['Forecast Accuracy'] * 100).astype(str) + '%'
+        combined_df['Frequency (%)'] = f"{freq}%"
+        combined_df['Forecast Accuracy (%)'] = combined_df['Forecast Accuracy'] * 100
 
         month_mapping = {
             0: 'Jan',
@@ -122,8 +122,8 @@ def get_data(country=country, mode=0, region=[70],
         combined_df['Issue Month'] = combined_df['Issue Month'].map(month_mapping)
 
         # Rearrange the columns in a specific sequence
-        desired_columns = ['Frequency', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference',
-                           'Forecast Accuracy', 'triggered']
+        desired_columns = ['Frequency (%)', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference',
+                           'Forecast Accuracy (%)', 'triggered']
         combined_df = combined_df[desired_columns]
 
         # Return the combined DataFrame
