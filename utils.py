@@ -23,7 +23,6 @@ import yaml
 
 country = "madagascar"
 
-
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
         config = yaml.safe_load(file)
@@ -155,8 +154,8 @@ def get_data(country=country, mode=0, region=[70],
 
 
 # Function to apply conditional formatting to tables
-def style_trigger(v, props=''):
-    return props if v == True else None
+# def style_trigger(v, props=''):
+#     return props if v == True else None
 
 
 def get_admin_data(country, level):
@@ -187,48 +186,47 @@ def get_admin_data(country, level):
         return None
 
 
-def get_trigger_tables():
+def get_trigger_tables(mode=0):
     # Initialize a dictionary to store admin tables
     admin_tables = {}
 
     # Creating trigger tables
 
-    for mode in modes:
-        admin_name = f"admin{mode['key']}_tables"
-        admin_tables[admin_name] = {}
-        for freq in frequencies:
-            for month in issue_month:
-                admin_data = get_admin_data(country, mode['key'])
-                # Iterate over each key value
-                if isinstance(admin_data, pd.Series):
-                    for region_key, label in admin_data.items():
-                        print(region_key, label)
-                        table_name = f"output_freq_{freq}_mode_{mode['key']}_month_{month}_region_{region_key}_table"
+    admin_name = f"admin{mode}_tables"
+    admin_tables[admin_name] = {}
+    for freq in frequencies:
+        for month in issue_month:
+            admin_data = get_admin_data(country, mode)
+            # Iterate over each key value
+            if isinstance(admin_data, pd.Series):
+                for region_key, label in admin_data.items():
+                    print(region_key, label)
+                    table_name = f"output_freq_{freq}_mode_{mode}_month_{month}_region_{region_key}_table"
 
-                        df = get_data(country=country, mode=mode['key'], region=[region_key],
-                                      season="season1", predictor=predictor, predictand=predictand,
-                                      year=year,
-                                      issue_month0=month, freq=freq, include_upcoming="false")
+                    df = get_data(country=country, mode=mode, region=[region_key],
+                                  season="season1", predictor=predictor, predictand=predictand,
+                                  year=year,
+                                  issue_month0=month, freq=freq, include_upcoming="false")
 
-                        df.insert(0, 'Admin Name', label)
-                        admin_tables[admin_name][table_name] = df
+                    df.insert(0, 'Admin Name', label)
+                    admin_tables[admin_name][table_name] = df
 
-                elif isinstance(admin_data, pd.DataFrame):
-                    for index, row in admin_data.iterrows():
-                        region_key, label = row['key'], row['label']
+            elif isinstance(admin_data, pd.DataFrame):
+                for index, row in admin_data.iterrows():
+                    region_key, label = row['key'], row['label']
 
-                        table_name = f"output_freq_{freq}_mode_{mode['key']}_month_{month}_region_{region_key}_table"
+                    table_name = f"output_freq_{freq}_mode_{mode}_month_{month}_region_{region_key}_table"
 
-                        df = get_data(country=country, mode=mode['key'], region=[region_key],
-                                      season="season1", predictor=predictor, predictand=predictand,
-                                      year=year,
-                                      issue_month0=month, freq=freq, include_upcoming="false")
+                    df = get_data(country=country, mode=mode, region=[region_key],
+                                  season="season1", predictor=predictor, predictand=predictand,
+                                  year=year,
+                                  issue_month0=month, freq=freq, include_upcoming="false")
 
-                        df.insert(0, 'Admin Name', label)
-                        admin_tables[admin_name][table_name] = df
+                    df.insert(0, 'Admin Name', label)
+                    admin_tables[admin_name][table_name] = df
 
-                else:
-                    # Handle other cases or raise an error
-                    raise ValueError("Unexpected output type from get_admin_data.")
+            else:
+                # Handle other cases or raise an error
+                raise ValueError("Unexpected output type from get_admin_data.")
 
     return admin_tables

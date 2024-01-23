@@ -20,8 +20,9 @@
 # Loading Packages
 import shinyswatch
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
-from utils import load_config, style_trigger, get_trigger_tables
+from utils import load_config, get_trigger_tables
 import pandas as pd
+import asyncio
 
 # Loading Country Variables
 country = "madagascar"
@@ -38,13 +39,6 @@ frequencies = country_config['freq']
 issue_month = country_config['issue_month']
 design_tool = country_config['design_tool']
 report = country_config['report']
-
-# Combine admin tables for a specific mode
-
-admin_tables = get_trigger_tables()
-
-combined_admin0 = pd.concat(admin_tables["admin0_tables"].values(), ignore_index=True)
-combined_admin1 = pd.concat(admin_tables["admin1_tables"].values(), ignore_index=True)
 
 # App Layout
 
@@ -97,20 +91,32 @@ app_ui = ui.page_navbar(
 
 def server(input, output, session):
     @render.data_frame
-    def table_key0_trigger():
+    async def table_key0_trigger():
         with ui.Progress(min=1, max=15) as p:
-            p.set(message="Calculation in progress", detail="This may take a few secs...")
+            p.set(message="Calculation in progress", detail="This may take a few mins...")
+
+            admin_tables = get_trigger_tables(mode=0)
+
+            combined_admin0 = pd.concat(admin_tables["admin0_tables"].values(), ignore_index=True)
 
             data = combined_admin0
+
+            p.set(15, message="Finished!")
 
         return render.DataTable(data, filters=True)
 
     @render.data_frame
     def table_key1_trigger():
         with ui.Progress(min=1, max=15) as p:
-            p.set(message="Calculation in progress", detail="This may take a few secs...")
+            p.set(message="Calculation in progress", detail="This may take a few mins...")
+
+            admin_tables = get_trigger_tables(mode=1)
+
+            combined_admin1 = pd.concat(admin_tables["admin1_tables"].values(), ignore_index=True)
 
             data = combined_admin1
+
+            p.set(15, message="Finished!")
 
         return render.DataTable(data, filters=True)
 
