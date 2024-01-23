@@ -1,9 +1,29 @@
+#--------------------------------------------------------------------------------------------------
+# Functions for Trigger Monitoring Dashboard
+#
+# Author - Nitin Magima
+# Date - 2024
+# Version - 1.0
+#--------------------------------------------------------------------------------------------------
+
+#==================================================================================================
+#
+# IMPORTANT - DISCLAIMER AND RIGHTS STATEMENT
+# This is a set of scripts written by the Financial Instruments Team at the International Research
+# Institute for Climate and Society (IRI) part of The Columbia Climate School, Columbia University
+# They are shared for educational purposes only.  Anyone who uses this code or its
+# functionality or structure, assumes full liability and should inform and credit IRI.
+#
+#==================================================================================================
+
 # Loading Packages
 import requests
 import pandas as pd
 import yaml
 
 country = "madagascar"
+
+
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
         config = yaml.safe_load(file)

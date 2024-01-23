@@ -1,3 +1,21 @@
+#--------------------------------------------------------------------------------------------------
+# YAML File for Trigger Monitoring Dashboard
+#
+# Author - Nitin Magima
+# Date - 2024
+# Version - 1.0
+#--------------------------------------------------------------------------------------------------
+
+#==================================================================================================
+#
+# IMPORTANT - DISCLAIMER AND RIGHTS STATEMENT
+# This is a set of scripts written by the Financial Instruments Team at the International Research
+# Institute for Climate and Society (IRI) part of The Columbia Climate School, Columbia University
+# They are shared for educational purposes only.  Anyone who uses this code or its
+# functionality or structure, assumes full liability and should inform and credit IRI.
+#
+#==================================================================================================
+
 countries:
     djibouti:
       country: "djibouti" #this is different from country as sometimes the season is included in this variable
@@ -27,8 +45,6 @@ countries:
           key: 0
         - name: Regional
           key: 1
-      #        - name: District
-      #          key: 2
       season: "season1"
       predictor: "pnep-v2"
       predictand: "bad-years-v3"

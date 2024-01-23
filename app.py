@@ -1,9 +1,27 @@
+# --------------------------------------------------------------------------------------------------
+# Base Code for Trigger Monitoring Dashboard
+#
+# Author - Nitin Magima
+# Date - 2024
+# Version - 1.0
+# --------------------------------------------------------------------------------------------------
+
+# ==================================================================================================
+#
+# IMPORTANT - DISCLAIMER AND RIGHTS STATEMENT
+# This is a set of scripts written by the Financial Instruments Team at the International Research
+# Institute for Climate and Society (IRI) part of The Columbia Climate School, Columbia University
+# They are shared for educational purposes only.  Anyone who uses this code or its
+# functionality or structure, assumes full liability and should inform and credit IRI.
+#
+# ==================================================================================================
+
+
 # Loading Packages
 import shinyswatch
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from utils import load_config, style_trigger, get_trigger_tables
 import pandas as pd
-
 
 # Loading Country Variables
 country = "madagascar"
@@ -60,6 +78,14 @@ app_ui = ui.page_navbar(
             )
         ),
         align="right",
+    ),
+    ui.nav_control(
+        ui.img(
+            src="https://iri.columbia.edu/wp-content/uploads/2015/10/IRI_icon_Blue-300x295.png",
+            href="https://iri.columbia.edu",
+            width="50px",
+            height="50px",
+        )
     ),
     title=f"{country.capitalize()} Trigger Monitoring -  {target_season} {year}",
     window_title=f"{country.capitalize()} Trigger Monitoring -  {target_season} {year}",
