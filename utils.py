@@ -21,7 +21,7 @@ import requests
 import pandas as pd
 import yaml
 
-country = "madagascar"
+maproom = "madagascar"
 
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
@@ -33,7 +33,7 @@ def load_config(file_path="config.yaml"):
 config = load_config()
 
 # Accessing values for the specified country
-country_config = config.get("countries", {}).get(country, {})
+country_config = config.get("maprooms", {}).get(maproom, {})
 
 # Access individual values using the 'country' variable
 modes = country_config.get("mode", [])
@@ -45,11 +45,11 @@ predictor = country_config['predictor']
 predictand = country_config['predictand']
 
 
-def get_data(country=country, mode=0, region=[70],
+def get_data(maproom=maproom, mode=0, region=[70],
              season="season1", predictor="pnep", predictand="bad-years", year=2023,
              issue_month0=5, freq=15, include_upcoming="false"):
     region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
-    api_url = (f"http://iridl.ldeo.columbia.edu/fbfmaproom2/{country}/"
+    api_url = (f"http://iridl.ldeo.columbia.edu/fbfmaproom2/{maproom}/"
                f"export?&mode={mode}&region={region_str}&season={season}&"
                f"predictor={predictor}&predictand={predictand}&year={year}&issue_month0={issue_month0}&freq={freq}&"
                f"include_upcoming={include_upcoming}")
@@ -158,9 +158,9 @@ def get_data(country=country, mode=0, region=[70],
 #     return props if v == True else None
 
 
-def get_admin_data(country, level):
+def get_admin_data(maproom, level):
     # Construct the API URL with the provided parameters
-    api_url = f"https://iridl.ldeo.columbia.edu/fbfmaproom2/regions?country={country}&level={level}"
+    api_url = f"https://iridl.ldeo.columbia.edu/fbfmaproom2/regions?country={maproom}&level={level}"
 
     # Make a GET request to the API
     response = requests.get(api_url)
@@ -196,14 +196,14 @@ def get_trigger_tables(mode=0):
     admin_tables[admin_name] = {}
     for freq in frequencies:
         for month in issue_month:
-            admin_data = get_admin_data(country, mode)
+            admin_data = get_admin_data(maproom, mode)
             # Iterate over each key value
             if isinstance(admin_data, pd.Series):
                 for region_key, label in admin_data.items():
                     print(region_key, label)
                     table_name = f"output_freq_{freq}_mode_{mode}_month_{month}_region_{region_key}_table"
 
-                    df = get_data(country=country, mode=mode, region=[region_key],
+                    df = get_data(maproom=maproom, mode=mode, region=[region_key],
                                   season="season1", predictor=predictor, predictand=predictand,
                                   year=year,
                                   issue_month0=month, freq=freq, include_upcoming="false")
@@ -217,7 +217,7 @@ def get_trigger_tables(mode=0):
 
                     table_name = f"output_freq_{freq}_mode_{mode}_month_{month}_region_{region_key}_table"
 
-                    df = get_data(country=country, mode=mode, region=[region_key],
+                    df = get_data(maproom=maproom, mode=mode, region=[region_key],
                                   season="season1", predictor=predictor, predictand=predictand,
                                   year=year,
                                   issue_month0=month, freq=freq, include_upcoming="false")

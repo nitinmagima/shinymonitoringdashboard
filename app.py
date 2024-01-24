@@ -25,13 +25,15 @@ import pandas as pd
 import asyncio
 
 # Loading Country Variables
-country = "madagascar"
+maproom = "madagascar"
+
 config = load_config()
 
 # Accessing values for the specified country
-country_config = config.get("countries", {}).get(country, {})
+country_config = config.get("maprooms", {}).get(maproom, {})
 
 # Access individual values using the 'country' variable
+country = country_config.get("country")
 modes = country_config.get("mode", [])
 year = country_config.get("year")
 target_season = country_config.get("target_season")
