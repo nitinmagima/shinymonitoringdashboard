@@ -1,12 +1,12 @@
-#--------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 # Functions for Trigger Monitoring Dashboard
 #
 # Author - Nitin Magima
 # Date - 2024
 # Version - 1.0
-#--------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
-#==================================================================================================
+# ==================================================================================================
 #
 # IMPORTANT - DISCLAIMER AND RIGHTS STATEMENT
 # This is a set of scripts written by the Financial Instruments Team at the International Research
@@ -14,14 +14,15 @@
 # They are shared for educational purposes only.  Anyone who uses this code or its
 # functionality or structure, assumes full liability and should inform and credit IRI.
 #
-#==================================================================================================
+# ==================================================================================================
 
 # Loading Packages
 import requests
 import pandas as pd
 import yaml
 
-maproom = "madagascar"
+maproom = "djibouti"
+
 
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
@@ -43,11 +44,13 @@ frequencies = country_config['freq']
 issue_month = country_config['issue_month']
 predictor = country_config['predictor']
 predictand = country_config['predictand']
+username = country_config['username']
+password = country_config['password']
 
 
 def get_data(maproom=maproom, mode=0, region=[70],
              season="season1", predictor="pnep", predictand="bad-years", year=2023,
-             issue_month0=5, freq=15, include_upcoming="false"):
+             issue_month0=5, freq=15, include_upcoming="false", username=username, password=password):
     region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
     api_url = (f"http://iridl.ldeo.columbia.edu/fbfmaproom2/{maproom}/"
                f"export?&mode={mode}&region={region_str}&season={season}&"
@@ -57,7 +60,14 @@ def get_data(maproom=maproom, mode=0, region=[70],
     print(api_url)
 
     # Make a GET request to the API
-    response = requests.get(api_url)
+    if username and password:
+        print(f"username: {username}, type: {type(username)}")
+        print(f"password: {password}, type: {type(password)}")
+        auth = (username, password)
+        response = requests.get(api_url, auth=auth)
+        print(response)
+    else:
+        response = requests.get(api_url)
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
@@ -162,8 +172,14 @@ def get_admin_data(maproom, level):
     # Construct the API URL with the provided parameters
     api_url = f"https://iridl.ldeo.columbia.edu/fbfmaproom2/regions?country={maproom}&level={level}"
 
+    print(api_url)
+
     # Make a GET request to the API
-    response = requests.get(api_url)
+    if username and password:
+        auth = (username, password)
+        response = requests.get(api_url, auth=auth)
+    else:
+        response = requests.get(api_url)
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
@@ -206,7 +222,8 @@ def get_trigger_tables(mode=0):
                     df = get_data(maproom=maproom, mode=mode, region=[region_key],
                                   season="season1", predictor=predictor, predictand=predictand,
                                   year=year,
-                                  issue_month0=month, freq=freq, include_upcoming="false")
+                                  issue_month0=month, freq=freq, include_upcoming="false", username=username,
+                                  password=password)
 
                     df.insert(0, 'Admin Name', label)
                     admin_tables[admin_name][table_name] = df
@@ -220,7 +237,8 @@ def get_trigger_tables(mode=0):
                     df = get_data(maproom=maproom, mode=mode, region=[region_key],
                                   season="season1", predictor=predictor, predictand=predictand,
                                   year=year,
-                                  issue_month0=month, freq=freq, include_upcoming="false")
+                                  issue_month0=month, freq=freq, include_upcoming="false", username=username,
+                                  password=password)
 
                     df.insert(0, 'Admin Name', label)
                     admin_tables[admin_name][table_name] = df

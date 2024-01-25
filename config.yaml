@@ -37,6 +37,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/djibouti"
       report: "https://google.com"
+      username: None
+      password: None
 
     djibouti-mam:
       maproom: "djibouti-mam"
@@ -58,6 +60,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/djibouti-mam"
       report: "https://google.com"
+      username: None
+      password: None
 
     djibouti-ond:
       maproom: "djibouti-ond"
@@ -79,6 +83,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/djibouti-ond"
       report: "https://google.com"
+      username: None
+      password: None
 
     madagascar:
       maproom: "madagascar"
@@ -98,6 +104,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/madagascar"
       report: "https://google.com"
+      username: None
+      password: None
 
     madagascar-ond:
       maproom: "madagascar-ond"
@@ -117,6 +125,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/madagascar-ond"
       report: "https://google.com"
+      username: None
+      password: None
 
     ethiopia:
       maproom: "ethiopia"
@@ -136,6 +146,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/ethiopia"
       report: "https://google.com"
+      username: None
+      password: None
 
     ethiopia-ond:
       maproom: "ethiopia-ond"
@@ -155,6 +167,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/ethiopia-ond"
       report: "https://google.com"
+      username: None
+      password: None
 
     southern-oromia:
       maproom: "southern-oromia"
@@ -174,6 +188,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/southern-oromia"
       report: "https://google.com"
+      username: None
+      password: None
 
     southern-oromia-ond:
       maproom: "southern-oromia-ond"
@@ -193,6 +209,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/southern-oromia-ond"
       report: "https://google.com"
+      username: None
+      password: None
 
     niger:
       maproom: "niger"
@@ -212,6 +230,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/niger"
       report: "https://google.com"
+      username: None
+      password: None
 
     lesotho:
       maproom: "lesotho"
@@ -231,6 +251,8 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/lesotho"
       report: "https://google.com"
+      username: "lms"
+      password: "maseru*newyork"
 
     lesotho-ond:
       maproom: "lesotho-ond"
@@ -250,3 +272,5 @@ maprooms:
       include_upcoming: false
       design_tool: "https://iridl.ldeo.columbia.edu/fbfmaproom2/lesotho-ond"
       report: "https://google.com"
+      username: "lms"
+      password: "maseru*newyork"

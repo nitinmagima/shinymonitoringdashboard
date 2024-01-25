@@ -25,7 +25,7 @@ import pandas as pd
 import asyncio
 
 # Loading Country Variables
-maproom = "madagascar"
+maproom = "djibouti"
 
 config = load_config()
 
@@ -41,6 +41,8 @@ frequencies = country_config['freq']
 issue_month = country_config['issue_month']
 design_tool = country_config['design_tool']
 report = country_config['report']
+username = country_config['username']
+password = country_config['password']
 
 # App Layout
 
