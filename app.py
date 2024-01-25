@@ -25,7 +25,7 @@ import pandas as pd
 import asyncio
 
 # Loading Country Variables
-maproom = "lesotho-ond"
+maproom = "djibouti"
 
 config = load_config()
 

@@ -21,7 +21,7 @@ import requests
 import pandas as pd
 import yaml
 
-maproom = "lesotho-ond"
+maproom = "djibouti"
 
 
 def load_config(file_path="config.yaml"):
@@ -53,26 +53,16 @@ def get_data(maproom=maproom, mode=0, region=[70],
              issue_month0=5, freq=15, include_upcoming="false", username=username, password=password):
 
     # Make a GET request to the API
-    if username and password:
-        region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
-        api_url = (f"https://iridl.ldeo.columbia.edu/fbfmaproom2/{maproom}/"
-                   f"export?season={season}&issue_month0={issue_month0}&freq={freq}&predictor"
-                   f"={predictor}&predictand={predictand}&include_upcoming={include_upcoming}&mode={mode}"
-                   f"&region={region_str}")
+    region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
+    api_url = (f"https://iridl.ldeo.columbia.edu/fbfmaproom2/{maproom}/"
+               f"export?season={season}&issue_month0={issue_month0}&freq={freq}&predictor"
+               f"={predictor}&predictand={predictand}&include_upcoming={include_upcoming}&mode={mode}"
+               f"&region={region_str}")
 
-        print(api_url)
+    print(api_url)
 
-        auth = (username, password)
-        response = requests.get(api_url, auth=auth)
-    else:
-        region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
-        api_url = (f"http://iridl.ldeo.columbia.edu/fbfmaproom2/{maproom}/"
-                   f"export?&mode={mode}&region={region_str}&season={season}&"
-                   f"predictor={predictor}&predictand={predictand}&year={year}&issue_month0={issue_month0}&freq={freq}&"
-                   f"include_upcoming={include_upcoming}")
-        print(api_url)
-
-        response = requests.get(api_url)
+    auth = (username, password)
+    response = requests.get(api_url, auth=auth)
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
