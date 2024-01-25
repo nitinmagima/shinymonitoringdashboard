@@ -245,7 +245,7 @@ maprooms:
       season: "season1"
       predictor: "pnep-v2"
       predictand: "bad-years-ag"
-      year: 2024
+      year: 2023
       issue_month: [10, 9, 8]
       freq: [ 15, 25, 35 ]
       include_upcoming: false
@@ -266,7 +266,7 @@ maprooms:
       season: "season1"
       predictor: "pnep-v2"
       predictand: "bad-years-ag"
-      year: 2024
+      year: 2023
       issue_month: [8, 7, 6, 5]
       freq: [ 15, 25, 35 ]
       include_upcoming: false
