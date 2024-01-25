@@ -21,7 +21,7 @@ import requests
 import pandas as pd
 import yaml
 
-maproom = "djibouti"
+maproom = "madagascar"
 
 
 def load_config(file_path="config.yaml"):
@@ -46,12 +46,12 @@ predictor = country_config['predictor']
 predictand = country_config['predictand']
 username = country_config['username']
 password = country_config['password']
+threshold_protocol = country_config['threshold_protocol']
 
 
 def get_data(maproom=maproom, mode=0, region=[70],
              season="season1", predictor="pnep", predictand="bad-years", year=2023,
              issue_month0=5, freq=15, include_upcoming="false", username=username, password=password):
-
     # Make a GET request to the API
     region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
     api_url = (f"https://iridl.ldeo.columbia.edu/fbfmaproom2/{maproom}/"
@@ -111,10 +111,13 @@ def get_data(maproom=maproom, mode=0, region=[70],
         df = pd.DataFrame(flattened_data).drop(non_nested_df.columns, axis=1, errors='ignore')
         df['triggered'] = df[predictor] > melted_non_nested_dict['Forecast Threshold']
         df['trigger difference'] = df[predictor] - melted_non_nested_dict['Forecast Threshold']
+        df['Adjusted Forecast Threshold'] = melted_non_nested_dict['Forecast Threshold'] + threshold_protocol
+        df['Triggered Adjusted'] = df[predictor] > melted_non_nested_dict['Forecast Threshold']
         df.rename(columns={predictor: 'forecast'}, inplace=True)
         df['forecast'] = df['forecast']
         df['trigger difference'] = df['trigger difference']
-        df = df.loc[:, ['forecast', 'trigger difference', 'triggered']].iloc[1, :].to_frame().T
+        df = df.loc[:, ['forecast', 'trigger difference', 'triggered',
+                        'Triggered Adjusted', 'Adjusted Forecast Threshold']].iloc[1, :].to_frame().T
 
         melted_non_nested_df['Value'] = melted_non_nested_df['Value']
 
@@ -126,6 +129,7 @@ def get_data(maproom=maproom, mode=0, region=[70],
         combined_df = pd.concat([df.reset_index(drop=True), melted_non_nested_df], axis=1).reset_index(drop=True)
         combined_df['Frequency (%)'] = f"{freq}%"
         combined_df['Forecast Accuracy (%)'] = combined_df['Forecast Accuracy'] * 100
+        combined_df['Threshold Protocol'] = f"{threshold_protocol}"
 
         month_mapping = {
             0: 'Jan',
@@ -147,7 +151,8 @@ def get_data(maproom=maproom, mode=0, region=[70],
 
         # Rearrange the columns in a specific sequence
         desired_columns = ['Frequency (%)', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference',
-                           'Forecast Accuracy (%)', 'triggered']
+                           'Forecast Accuracy (%)', 'triggered', 'Adjusted Forecast Threshold',
+                           'Threshold Protocol', 'Triggered Adjusted',]
         combined_df = combined_df[desired_columns]
 
         # Return the combined DataFrame

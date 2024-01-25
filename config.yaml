@@ -39,6 +39,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 0
 
     djibouti-mam:
       maproom: "djibouti-mam"
@@ -62,6 +63,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 0
 
     djibouti-ond:
       maproom: "djibouti-ond"
@@ -85,6 +87,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 0
 
     madagascar:
       maproom: "madagascar"
@@ -106,6 +109,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 2
 
     madagascar-ond:
       maproom: "madagascar-ond"
@@ -127,6 +131,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 2
 
     ethiopia:
       maproom: "ethiopia"
@@ -148,6 +153,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 0
 
     ethiopia-ond:
       maproom: "ethiopia-ond"
@@ -169,6 +175,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 0
 
     southern-oromia:
       maproom: "southern-oromia"
@@ -190,6 +197,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 0
 
     southern-oromia-ond:
       maproom: "southern-oromia-ond"
@@ -211,6 +219,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 0
 
     niger:
       maproom: "niger"
@@ -232,6 +241,7 @@ maprooms:
       report: "https://google.com"
       username: None
       password: None
+      threshold_protocol: 2
 
     lesotho:
       maproom: "lesotho"
@@ -253,6 +263,7 @@ maprooms:
       report: "https://google.com"
       username: "lms"
       password: "maseru*newyork"
+      threshold_protocol: 0
 
     lesotho-ond:
       maproom: "lesotho-ond"
@@ -274,3 +285,4 @@ maprooms:
       report: "https://google.com"
       username: "lms"
       password: "maseru*newyork"
+      threshold_protocol: 0

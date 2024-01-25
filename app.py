@@ -22,10 +22,9 @@ import shinyswatch
 from shiny import App, Inputs, Outputs, Session, reactive, render, ui
 from utils import load_config, get_trigger_tables
 import pandas as pd
-import asyncio
 
 # Loading Country Variables
-maproom = "djibouti"
+maproom = "madagascar"
 
 config = load_config()
 
