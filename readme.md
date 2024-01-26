@@ -1,17 +1,17 @@
 # Trigger Monitoring Dashboard for Anticipated Action  Guide
 
 This is a README file created for the Trigger Monitoring Dashboard for Anticipated Action Programs for WFP in various 
-countries. The code base has been designed in such a way that only the YAML file needs to be updated to create a new 
-Trigger Monitoring Dashboard. The code has been divided into four files: 
+countries. The dashboard has been built in python using "Shiny for Python". The struture is similar to the Python 
+maproom created for AA Design. The code base has been designed in such a way that only the YAML file needs to be 
+updated to create a new Trigger Monitoring Dashboard. The Trigger Monitoring Dashboard takes advantage of the map rooms 
+already created for respective countries and pulls  the data from there.The code has been divided  into four files: 
 
-1. app.py, 
-2. utils.py 
-3. config.yaml
-4. get_admin1data.py
+1. app.py - creates the front end of the dashboard. Creates filterable tables for admin 0 and admin 1 levels.  
+2. utils.py - contains functions to use the maproom API
+3. config.yaml - contains the data for the functions to work in utils.py 
+4. get_admin1data.py - help manually update the config.yaml file of admin1_list. 
 
-The additional file, get_admin1data.py, is there to help manually update the config.yaml file of admin1_list. 
-The Trigger Monitoring Dashboard takes advantage of the map rooms already created for respective countries and pulls 
-the data from there.
+
 
 ## YAML Description
 

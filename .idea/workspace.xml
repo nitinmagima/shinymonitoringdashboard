@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="updated YAML file in admin1_list. updated get_admin_data to only include admin1_list. added a get_admin1data.py script help update admin1_list.">
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,24 +43,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.get_admin1data.executor": "Run",
-    "Python.lesothoapi.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.scratch.executor": "Run",
-    "Python.utils.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.get_admin1data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.lesothoapi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -145,7 +144,8 @@
       <workItem from="1706023007263" duration="3148000" />
       <workItem from="1706128788268" duration="3375000" />
       <workItem from="1706138802027" duration="12611000" />
-      <workItem from="1706278968832" duration="7174000" />
+      <workItem from="1706278968832" duration="7305000" />
+      <workItem from="1706294400174" duration="305000" />
     </task>
     <task id="LOCAL-00001" summary="created admin0 tables. commented out admin1 and admin2 in yaml file.">
       <option name="closed" value="true" />
@@ -251,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706285445268</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol">
+      <option name="closed" value="true" />
+      <created>1706293583095</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706293583095</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +291,8 @@
     <MESSAGE value="cleaned up get_data function." />
     <MESSAGE value="added threshold protocol to the columns." />
     <MESSAGE value="updated YAML file in admin1_list. updated get_admin_data to only include admin1_list. added a get_admin1data.py script help update admin1_list." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated YAML file in admin1_list. updated get_admin_data to only include admin1_list. added a get_admin1data.py script help update admin1_list." />
+    <MESSAGE value="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol" />
+    <option name="LAST_COMMIT_MESSAGE" value="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PyShinyDashboard$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1705702401339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
