@@ -21,7 +21,7 @@ import requests
 import pandas as pd
 import yaml
 
-maproom = "madagascar"
+maproom = "djibouti"
 
 
 def load_config(file_path="config.yaml"):
@@ -47,6 +47,7 @@ predictand = country_config['predictand']
 username = country_config['username']
 password = country_config['password']
 threshold_protocol = country_config['threshold_protocol']
+valid_keys = country_config['admin1_list']
 
 
 def get_data(maproom=maproom, mode=0, region=[70],
@@ -168,7 +169,7 @@ def get_data(maproom=maproom, mode=0, region=[70],
 #     return props if v == True else None
 
 
-def get_admin_data(maproom, level):
+def get_admin_data(maproom, level, valid_keys=None):
     # Construct the API URL with the provided parameters
     api_url = f"https://iridl.ldeo.columbia.edu/fbfmaproom2/regions?country={maproom}&level={level}"
 
@@ -192,6 +193,11 @@ def get_admin_data(maproom, level):
         # Extract "key" and "label" from the "regions" column
         df[['key', 'label']] = df['regions'].apply(pd.Series)
 
+        # Filter keys if valid_keys is provided
+        if level != 0:
+            if valid_keys is not None:
+                df = df[df['key'].isin(valid_keys)]
+
         # Drop the original "regions" column if needed
         df = df.drop('regions', axis=1)
 
@@ -212,7 +218,7 @@ def get_trigger_tables(mode=0):
     admin_tables[admin_name] = {}
     for freq in frequencies:
         for month in issue_month:
-            admin_data = get_admin_data(maproom, mode)
+            admin_data = get_admin_data(maproom, mode, valid_keys=valid_keys)
             # Iterate over each key value
             if isinstance(admin_data, pd.Series):
                 for region_key, label in admin_data.items():

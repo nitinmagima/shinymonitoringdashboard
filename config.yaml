@@ -40,6 +40,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      admin1_list: ["CERD12", "ISERST6"]
 
     djibouti-mam:
       maproom: "djibouti-mam"
@@ -64,6 +65,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      admin1_list: None
 
     djibouti-ond:
       maproom: "djibouti-ond"
@@ -88,6 +90,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      admin1_list: None
 
     madagascar:
       maproom: "madagascar"
@@ -110,6 +113,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 2
+      admin1_list: None
 
     madagascar-ond:
       maproom: "madagascar-ond"
@@ -132,6 +136,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 2
+      admin1_list: None
 
     ethiopia:
       maproom: "ethiopia"
@@ -154,6 +159,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      admin1_list: None
 
     ethiopia-ond:
       maproom: "ethiopia-ond"
@@ -176,6 +182,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      admin1_list: None
 
     southern-oromia:
       maproom: "southern-oromia"
@@ -198,6 +205,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      admin1_list: None
 
     southern-oromia-ond:
       maproom: "southern-oromia-ond"
@@ -220,6 +228,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      admin1_list: None
 
     niger:
       maproom: "niger"
@@ -242,6 +251,8 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 2
+      admin1_list: None
+
 
     lesotho:
       maproom: "lesotho"
@@ -264,6 +275,7 @@ maprooms:
       username: "lms"
       password: "maseru*newyork"
       threshold_protocol: 0
+      admin1_list: None
 
     lesotho-ond:
       maproom: "lesotho-ond"
@@ -286,3 +298,4 @@ maprooms:
       username: "lms"
       password: "maseru*newyork"
       threshold_protocol: 0
+      admin1_list: None

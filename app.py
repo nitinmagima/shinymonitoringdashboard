@@ -24,7 +24,7 @@ from utils import load_config, get_trigger_tables
 import pandas as pd
 
 # Loading Country Variables
-maproom = "madagascar"
+maproom = "djibouti"
 
 config = load_config()
 
