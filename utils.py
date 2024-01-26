@@ -151,10 +151,15 @@ def get_data(maproom=maproom, mode=0, region=[70],
         combined_df['Issue Month'] = combined_df['Issue Month'].map(month_mapping)
 
         # Rearrange the columns in a specific sequence
-        desired_columns = ['Frequency (%)', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference',
-                           'Forecast Accuracy (%)', 'triggered', 'Adjusted Forecast Threshold',
-                           'Threshold Protocol', 'Triggered Adjusted',]
-        combined_df = combined_df[desired_columns]
+        if threshold_protocol == 0:
+            desired_columns = ['Frequency (%)', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference',
+                               'Forecast Accuracy (%)', 'triggered']
+            combined_df = combined_df[desired_columns]
+        else:
+            desired_columns = ['Frequency (%)', 'Issue Month', 'forecast', 'Forecast Threshold', 'trigger difference',
+                               'Forecast Accuracy (%)', 'triggered', 'Adjusted Forecast Threshold',
+                               'Threshold Protocol', 'Triggered Adjusted']
+            combined_df = combined_df[desired_columns]
 
         # Return the combined DataFrame
         return combined_df
