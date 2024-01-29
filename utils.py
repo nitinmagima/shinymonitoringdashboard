@@ -42,11 +42,13 @@ year = country_config.get("year")
 target_season = country_config.get("target_season")
 frequencies = country_config['freq']
 issue_month = country_config['issue_month']
+season = country_config['season']
 predictor = country_config['predictor']
 predictand = country_config['predictand']
 username = country_config['username']
 password = country_config['password']
 threshold_protocol = country_config['threshold_protocol']
+need_valid_keys = country_config['need_valid_keys']
 valid_keys = country_config['admin1_list']
 
 
@@ -200,11 +202,13 @@ def get_admin_data(maproom, level, valid_keys=None):
 
         # Filter keys if valid_keys is provided
         if level != 0:
-            if valid_keys is not None:
+            if need_valid_keys is True:
                 df = df[df['key'].isin(valid_keys)]
 
         # Drop the original "regions" column if needed
         df = df.drop('regions', axis=1)
+
+        print(df)
 
         return df
     else:
@@ -221,9 +225,10 @@ def get_trigger_tables(mode=0):
 
     admin_name = f"admin{mode}_tables"
     admin_tables[admin_name] = {}
+    admin_data = get_admin_data(maproom, mode, valid_keys=valid_keys)
+
     for freq in frequencies:
         for month in issue_month:
-            admin_data = get_admin_data(maproom, mode, valid_keys=valid_keys)
             # Iterate over each key value
             if isinstance(admin_data, pd.Series):
                 for region_key, label in admin_data.items():
@@ -231,7 +236,7 @@ def get_trigger_tables(mode=0):
                     table_name = f"output_freq_{freq}_mode_{mode}_month_{month}_region_{region_key}_table"
 
                     df = get_data(maproom=maproom, mode=mode, region=[region_key],
-                                  season="season1", predictor=predictor, predictand=predictand,
+                                  season=season, predictor=predictor, predictand=predictand,
                                   year=year,
                                   issue_month0=month, freq=freq, include_upcoming="false", username=username,
                                   password=password)
@@ -246,7 +251,7 @@ def get_trigger_tables(mode=0):
                     table_name = f"output_freq_{freq}_mode_{mode}_month_{month}_region_{region_key}_table"
 
                     df = get_data(maproom=maproom, mode=mode, region=[region_key],
-                                  season="season1", predictor=predictor, predictand=predictand,
+                                  season=season, predictor=predictor, predictand=predictand,
                                   year=year,
                                   issue_month0=month, freq=freq, include_upcoming="false", username=username,
                                   password=password)

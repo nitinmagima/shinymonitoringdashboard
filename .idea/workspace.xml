@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol">
+    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="updated readme file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +148,10 @@
       <workItem from="1706128788268" duration="3375000" />
       <workItem from="1706138802027" duration="12611000" />
       <workItem from="1706278968832" duration="7305000" />
-      <workItem from="1706294400174" duration="305000" />
+      <workItem from="1706294400174" duration="320000" />
+      <workItem from="1706500462075" duration="58000" />
+      <workItem from="1706541724773" duration="133000" />
+      <workItem from="1706558551112" duration="3032000" />
     </task>
     <task id="LOCAL-00001" summary="created admin0 tables. commented out admin1 and admin2 in yaml file.">
       <option name="closed" value="true" />
@@ -259,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706293583095</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="updated readme file.">
+      <option name="closed" value="true" />
+      <created>1706294713856</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1706294713856</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +306,8 @@
     <MESSAGE value="added threshold protocol to the columns." />
     <MESSAGE value="updated YAML file in admin1_list. updated get_admin_data to only include admin1_list. added a get_admin1data.py script help update admin1_list." />
     <MESSAGE value="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol" />
-    <option name="LAST_COMMIT_MESSAGE" value="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol" />
+    <MESSAGE value="updated readme file." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated readme file." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PyShinyDashboard$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1705702401339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

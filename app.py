@@ -37,6 +37,7 @@ modes = country_config.get("mode", [])
 year = country_config.get("year")
 target_season = country_config.get("target_season")
 frequencies = country_config['freq']
+season = country_config['season']
 issue_month = country_config['issue_month']
 design_tool = country_config['design_tool']
 report = country_config['report']

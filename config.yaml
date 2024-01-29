@@ -40,6 +40,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      need_valid_keys: True
       admin1_list: ["CERD12", "ISERST6"]
 
     djibouti-mam:
@@ -65,6 +66,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None
 
     djibouti-ond:
@@ -90,6 +92,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None
 
     madagascar:
@@ -113,6 +116,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 2
+      need_valid_keys: False
       admin1_list: None
 
     madagascar-ond:
@@ -136,6 +140,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 2
+      need_valid_keys: False
       admin1_list: None
 
     ethiopia:
@@ -159,6 +164,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None
 
     ethiopia-ond:
@@ -170,7 +176,7 @@ maprooms:
           key: 0
         - name: Zonal
           key: 1
-      season: "season1"
+      season: "season2"
       predictor: "pnep"
       predictand: "bad-years"
       year: 2024
@@ -182,6 +188,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None
 
     southern-oromia:
@@ -205,6 +212,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None
 
     southern-oromia-ond:
@@ -228,6 +236,7 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None
 
     niger:
@@ -251,8 +260,8 @@ maprooms:
       username: None
       password: None
       threshold_protocol: 2
+      need_valid_keys: False
       admin1_list: None
-
 
     lesotho:
       maproom: "lesotho"
@@ -275,6 +284,7 @@ maprooms:
       username: "lms"
       password: "maseru*newyork"
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None
 
     lesotho-ond:
@@ -298,4 +308,5 @@ maprooms:
       username: "lms"
       password: "maseru*newyork"
       threshold_protocol: 0
+      need_valid_keys: False
       admin1_list: None

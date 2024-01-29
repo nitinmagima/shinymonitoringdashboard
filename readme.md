@@ -47,7 +47,8 @@ historical data.
 14. password: use username if the maproom is behind a sign-in wall
 15. threshold_protocol:The threshold protocol is decided during the respective country working groups to see if 
 additional points are required to determine whether the forecast will be triggered or not
-16. admin1_list: this field refers to the list of keys or admin level 1 the AA project is focusing on. The admin1 list 
+16. need_valid_keys: assign value True, without quotes (don't use "True"), if using admin1_list
+17. admin1_list: this field refers to the list of keys or admin level 1 the AA project is focusing on. The admin1 list 
 is there in case only certain admin1 units need to be shown in the trigger monitoring table, this list needs to be 
 updated. To see the full list of keys, go to the data folder and see the respective maproom CSV file. If it's not there, 
 you can use the get_admin1_data.py to create the CSV files in the data folder, and then open the CSV file that reflects 
