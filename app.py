@@ -24,25 +24,31 @@ from utils import load_config, get_trigger_tables
 import pandas as pd
 
 # Loading Country Variables
-maproom = "djibouti"
+maproom = "lesotho-ond"
 
 config = load_config()
 
-# Accessing values for the specified country
+# Accessing values for the specified maproom
 country_config = config.get("maprooms", {}).get(maproom, {})
 
-# Access individual values using the 'country' variable
+# Access individual values using the 'maproom' variable
 country = country_config.get("country")
 modes = country_config.get("mode", [])
 year = country_config.get("year")
+season = country_config.get("season")
 target_season = country_config.get("target_season")
 frequencies = country_config['freq']
-season = country_config['season']
 issue_month = country_config['issue_month']
+predictor = country_config['predictor']
+predictand = country_config['predictand']
+include_upcoming = country_config['include_upcoming']
 design_tool = country_config['design_tool']
 report = country_config['report']
 username = country_config['username']
 password = country_config['password']
+threshold_protocol = country_config['threshold_protocol']
+need_valid_keys = country_config['need_valid_keys']
+valid_keys = country_config['admin1_list']
 
 # App Layout
 
@@ -99,7 +105,11 @@ def server(input, output, session):
         with ui.Progress(min=1, max=15) as p:
             p.set(message="Calculation in progress", detail="This may take a few mins...")
 
-            admin_tables = get_trigger_tables(mode=0)
+            admin_tables = get_trigger_tables(maproom=maproom, mode=0, season=season, predictor=predictor,
+                                              predictand=predictand, issue_month=issue_month, frequencies=frequencies,
+                                              include_upcoming=include_upcoming, threshold_protocol=threshold_protocol,
+                                              username=username, password=password,need_valid_keys=need_valid_keys,
+                                              valid_keys=valid_keys)
 
             combined_admin0 = pd.concat(admin_tables["admin0_tables"].values(), ignore_index=True)
 
@@ -114,7 +124,11 @@ def server(input, output, session):
         with ui.Progress(min=1, max=15) as p:
             p.set(message="Calculation in progress", detail="This may take a few mins...")
 
-            admin_tables = get_trigger_tables(mode=1)
+            admin_tables = get_trigger_tables(maproom=maproom, mode=1, season=season, predictor=predictor,
+                                              predictand=predictand, issue_month=issue_month, frequencies=frequencies,
+                                              include_upcoming=include_upcoming, threshold_protocol=threshold_protocol,
+                                              username=username, password=password,need_valid_keys=need_valid_keys,
+                                              valid_keys=valid_keys)
 
             combined_admin1 = pd.concat(admin_tables["admin1_tables"].values(), ignore_index=True)
 

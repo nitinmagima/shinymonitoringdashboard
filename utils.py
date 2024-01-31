@@ -21,8 +21,6 @@ import requests
 import pandas as pd
 import yaml
 
-maproom = "djibouti"
-
 
 def load_config(file_path="config.yaml"):
     with open(file_path, "r") as file:
@@ -30,31 +28,8 @@ def load_config(file_path="config.yaml"):
     return config
 
 
-# Loading Country Variables
-config = load_config()
-
-# Accessing values for the specified country
-country_config = config.get("maprooms", {}).get(maproom, {})
-
-# Access individual values using the 'country' variable
-modes = country_config.get("mode", [])
-year = country_config.get("year")
-target_season = country_config.get("target_season")
-frequencies = country_config['freq']
-issue_month = country_config['issue_month']
-season = country_config['season']
-predictor = country_config['predictor']
-predictand = country_config['predictand']
-username = country_config['username']
-password = country_config['password']
-threshold_protocol = country_config['threshold_protocol']
-need_valid_keys = country_config['need_valid_keys']
-valid_keys = country_config['admin1_list']
-
-
-def get_data(maproom=maproom, mode=0, region=[70],
-             season="season1", predictor="pnep", predictand="bad-years", year=2023,
-             issue_month0=5, freq=15, include_upcoming="false", username=username, password=password):
+def get_data(maproom, mode, region, season, predictor, predictand,
+             issue_month0, freq, include_upcoming, threshold_protocol, username, password):
     # Make a GET request to the API
     region_str = ",".join(map(str, region))  # Convert region values to a comma-separated string
     api_url = (f"https://iridl.ldeo.columbia.edu/fbfmaproom2/{maproom}/"
@@ -176,7 +151,7 @@ def get_data(maproom=maproom, mode=0, region=[70],
 #     return props if v == True else None
 
 
-def get_admin_data(maproom, level, valid_keys=None):
+def get_admin_data(maproom, level, username, password, need_valid_keys, valid_keys=None):
     # Construct the API URL with the provided parameters
     api_url = f"https://iridl.ldeo.columbia.edu/fbfmaproom2/regions?country={maproom}&level={level}"
 
@@ -217,7 +192,9 @@ def get_admin_data(maproom, level, valid_keys=None):
         return None
 
 
-def get_trigger_tables(mode=0):
+def get_trigger_tables(maproom, mode, season, predictor, predictand,
+                       issue_month, frequencies, include_upcoming, threshold_protocol, username, password,
+                       need_valid_keys, valid_keys):
     # Initialize a dictionary to store admin tables
     admin_tables = {}
 
@@ -225,7 +202,8 @@ def get_trigger_tables(mode=0):
 
     admin_name = f"admin{mode}_tables"
     admin_tables[admin_name] = {}
-    admin_data = get_admin_data(maproom, mode, valid_keys=valid_keys)
+    admin_data = get_admin_data(maproom, mode, username=username, password=password,
+                                need_valid_keys=need_valid_keys, valid_keys=valid_keys)
 
     for freq in frequencies:
         for month in issue_month:
@@ -237,9 +215,8 @@ def get_trigger_tables(mode=0):
 
                     df = get_data(maproom=maproom, mode=mode, region=[region_key],
                                   season=season, predictor=predictor, predictand=predictand,
-                                  year=year,
-                                  issue_month0=month, freq=freq, include_upcoming="false", username=username,
-                                  password=password)
+                                  issue_month0=month, freq=freq, include_upcoming=include_upcoming,
+                                  threshold_protocol=threshold_protocol, username=username, password=password)
 
                     df.insert(0, 'Admin Name', label)
                     admin_tables[admin_name][table_name] = df
@@ -252,9 +229,8 @@ def get_trigger_tables(mode=0):
 
                     df = get_data(maproom=maproom, mode=mode, region=[region_key],
                                   season=season, predictor=predictor, predictand=predictand,
-                                  year=year,
-                                  issue_month0=month, freq=freq, include_upcoming="false", username=username,
-                                  password=password)
+                                  issue_month0=month, freq=freq, include_upcoming=include_upcoming,
+                                  threshold_protocol=threshold_protocol, username=username, password=password)
 
                     df.insert(0, 'Admin Name', label)
                     admin_tables[admin_name][table_name] = df

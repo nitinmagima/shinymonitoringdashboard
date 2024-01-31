@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="updated readme file.">
+    <list default="true" id="0084afb7-c18f-436b-bc58-b79bac22adaa" name="Changes" comment="updated readme and config with new variable need_valid_keys. Updated code to take need_valid_keys variable. updated ethiopia ond season value to take season2 not season1.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +150,8 @@
       <workItem from="1706294400174" duration="320000" />
       <workItem from="1706500462075" duration="58000" />
       <workItem from="1706541724773" duration="133000" />
-      <workItem from="1706558551112" duration="3032000" />
+      <workItem from="1706558551112" duration="3273000" />
+      <workItem from="1706721320479" duration="3494000" />
     </task>
     <task id="LOCAL-00001" summary="created admin0 tables. commented out admin1 and admin2 in yaml file.">
       <option name="closed" value="true" />
@@ -273,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706294713856</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="updated readme and config with new variable need_valid_keys. Updated code to take need_valid_keys variable. updated ethiopia ond season value to take season2 not season1.">
+      <option name="closed" value="true" />
+      <created>1706563168304</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1706563168304</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +315,8 @@
     <MESSAGE value="updated YAML file in admin1_list. updated get_admin_data to only include admin1_list. added a get_admin1data.py script help update admin1_list." />
     <MESSAGE value="included a read me file. updated the get_data function such that it shows appropriate columns depending on the threshold_protocol" />
     <MESSAGE value="updated readme file." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated readme file." />
+    <MESSAGE value="updated readme and config with new variable need_valid_keys. Updated code to take need_valid_keys variable. updated ethiopia ond season value to take season2 not season1." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated readme and config with new variable need_valid_keys. Updated code to take need_valid_keys variable. updated ethiopia ond season value to take season2 not season1." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PyShinyDashboard$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1705702401339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
