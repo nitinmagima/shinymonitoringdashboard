@@ -24,7 +24,7 @@ from utils import load_config, get_trigger_tables
 import pandas as pd
 
 # Loading Country Variables
-maproom = "lesotho-ond"
+maproom = "djibouti"
 
 config = load_config()
 
@@ -74,13 +74,13 @@ app_ui = ui.page_navbar(
                 target="_blank",
             )
         ),
-        ui.nav_control(
-            ui.a(
-                "R Markdown Reports",
-                href=report,
-                target="_blank",
-            )
-        ),
+        # ui.nav_control(
+        #     ui.a(
+        #         "R Markdown Reports",
+        #         href=report,
+        #         target="_blank",
+        #     )
+        # ),
         align="right",
     ),
     ui.nav_control(
